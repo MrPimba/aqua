@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dl3guhty12atl"]
+
+[ext_resource type="Script" uid="uid://kyn5isk7mtst" path="res://assets/Jogador/Player.gd" id="1_j2hai"]
+[ext_resource type="Script" uid="uid://c0xbsf22mkuqm" path="res://Reusable/Finite State Machine/StateMachine.gd" id="2_5481f"]
+[ext_resource type="Script" uid="uid://c8ufbt2n340sr" path="res://assets/Jogador/StateMachine/States/Idle.gd" id="3_bsmxe"]
+[ext_resource type="Script" uid="uid://d2at0ak7tkxea" path="res://assets/Jogador/StateMachine/States/Walking.gd" id="4_c51ww"]
+[ext_resource type="Script" uid="uid://bk2ji1y6k7w2n" path="res://assets/Jogador/StateMachine/States/Surfing.gd" id="5_cmw62"]
+[ext_resource type="Script" uid="uid://lj8mw8m4ro3y" path="res://components/velocidade.gd" id="6_cmw62"]
+[ext_resource type="Script" uid="uid://c13d1l2ij0mkb" path="res://components/vida.gd" id="7_4td50"]
+[ext_resource type="Script" uid="uid://c8cg80vmv3go2" path="res://components/stamina.gd" id="8_ajy2y"]
+[ext_resource type="Script" uid="uid://dso3jlrsyo3c2" path="res://components/almas.gd" id="9_bug2i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rk6f"]
+
+[node name="Player" type="Node2D" unique_id=1715185669]
+script = ExtResource("1_j2hai")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=527051746]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=575259903]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1590607446]
+shape = SubResource("RectangleShape2D_1rk6f")
+
+[node name="StateMachine" type="Node" parent="CharacterBody2D" unique_id=306926093 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_5481f")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://c0xbsf22mkuqm"
+
+[node name="Idle" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1659282666]
+script = ExtResource("3_bsmxe")
+metadata/_custom_type_script = "uid://c8ufbt2n340sr"
+
+[node name="Walking" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1972147320]
+script = ExtResource("4_c51ww")
+metadata/_custom_type_script = "uid://d2at0ak7tkxea"
+
+[node name="Surfing" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1894884644]
+script = ExtResource("5_cmw62")
+metadata/_custom_type_script = "uid://bk2ji1y6k7w2n"
+
+[node name="Velocidade" type="Node" parent="CharacterBody2D" unique_id=2114549722]
+script = ExtResource("6_cmw62")
+velocidade = 10
+metadata/_custom_type_script = "uid://lj8mw8m4ro3y"
+
+[node name="Vida" type="Node" parent="CharacterBody2D" unique_id=762786041]
+script = ExtResource("7_4td50")
+vida_maxima = 100
+metadata/_custom_type_script = "uid://c13d1l2ij0mkb"
+
+[node name="Stamina" type="Node" parent="CharacterBody2D" unique_id=199306194]
+script = ExtResource("8_ajy2y")
+stamina = 100
+metadata/_custom_type_script = "uid://c8cg80vmv3go2"
+
+[node name="Almas" type="Node" parent="CharacterBody2D" unique_id=2076724995]
+script = ExtResource("9_bug2i")
+metadata/_custom_type_script = "uid://dso3jlrsyo3c2"
