@@ -12,8 +12,11 @@ func update(_delta: float) -> void:
 # Chamada pela maquina de estados no tick de física
 func physics_update(_delta: float) -> void:
 	super.physics_update(_delta)
+	
 	if Input.is_action_just_pressed(UP) or Input.is_action_just_pressed(DOWN) or Input.is_action_just_pressed(RIGHT) or Input.is_action_just_pressed(LEFT):
 		finished.emit(WALKING)
+	elif Input.is_action_just_pressed(FIRST_HABILITY_INPUT):
+		finished.emit(first_hability)
 	
 # Chamada pela maquina de estados quando o estado é inicializado
 # pela primeira vez
@@ -24,5 +27,5 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 # Chamada pela maquina de estados antes do estado ser trocado
 func exit() -> void:
-	printerr("Saindo do estado:" + str(get_path()))
+	super.exit()
 	pass

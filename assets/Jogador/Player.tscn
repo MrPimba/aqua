@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://dl3guhty12atl"]
 
+[ext_resource type="Script" uid="uid://cef4hhvtdpx3a" path="res://components/habilidades/HabilitySurf.gd" id="1_4td50"]
 [ext_resource type="Script" uid="uid://kyn5isk7mtst" path="res://assets/Jogador/Player.gd" id="1_j2hai"]
 [ext_resource type="Texture2D" uid="uid://0kva8r6fvupf" path="res://spr/PLAYER.png" id="2_4td50"]
-[ext_resource type="Script" uid="uid://c0xbsf22mkuqm" path="res://Reusable/Finite State Machine/StateMachine.gd" id="2_5481f"]
+[ext_resource type="Script" uid="uid://c0xbsf22mkuqm" path="res://Abstract/Finite State Machine/StateMachine.gd" id="2_5481f"]
 [ext_resource type="Script" uid="uid://c8ufbt2n340sr" path="res://assets/Jogador/StateMachine/States/Idle.gd" id="3_bsmxe"]
 [ext_resource type="Script" uid="uid://d2at0ak7tkxea" path="res://assets/Jogador/StateMachine/States/Walking.gd" id="4_c51ww"]
-[ext_resource type="Script" uid="uid://bk2ji1y6k7w2n" path="res://assets/Jogador/StateMachine/States/Surfing.gd" id="5_cmw62"]
+[ext_resource type="Script" uid="uid://ca7yp78tefryh" path="res://assets/Jogador/StateMachine/States/Surf.gd" id="6_ajy2y"]
 [ext_resource type="Script" uid="uid://lj8mw8m4ro3y" path="res://components/velocidade.gd" id="6_cmw62"]
 [ext_resource type="Script" uid="uid://c13d1l2ij0mkb" path="res://components/vida.gd" id="7_4td50"]
 [ext_resource type="Script" uid="uid://c8cg80vmv3go2" path="res://components/stamina.gd" id="8_ajy2y"]
 [ext_resource type="Script" uid="uid://dso3jlrsyo3c2" path="res://components/almas.gd" id="9_bug2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rk6f"]
-size = Vector2(511, 512)
+size = Vector2(211, 420)
 
 [sub_resource type="Animation" id="Animation_ajy2y"]
 length = 0.001
@@ -66,8 +67,9 @@ _data = {
 &"walking": SubResource("Animation_4td50")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=527051746]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=527051746 node_paths=PackedStringArray("first_hability")]
 script = ExtResource("1_j2hai")
+first_hability = NodePath("HabilitySurf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1555365549]
 texture_filter = 1
@@ -77,7 +79,7 @@ texture = ExtResource("2_4td50")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1590607446]
-position = Vector2(64, 55)
+position = Vector2(76.5, 67)
 shape = SubResource("RectangleShape2D_1rk6f")
 
 [node name="StateMachine" type="Node" parent="." unique_id=306926093 node_paths=PackedStringArray("initial_state")]
@@ -93,9 +95,9 @@ metadata/_custom_type_script = "uid://c8ufbt2n340sr"
 script = ExtResource("4_c51ww")
 metadata/_custom_type_script = "uid://d2at0ak7tkxea"
 
-[node name="Surfing" type="Node" parent="StateMachine" unique_id=1894884644]
-script = ExtResource("5_cmw62")
-metadata/_custom_type_script = "uid://bk2ji1y6k7w2n"
+[node name="Surf" type="Node" parent="StateMachine" unique_id=971636387]
+script = ExtResource("6_ajy2y")
+metadata/_custom_type_script = "uid://ca7yp78tefryh"
 
 [node name="Velocidade" type="Node" parent="." unique_id=2114549722]
 script = ExtResource("6_cmw62")
@@ -109,7 +111,8 @@ metadata/_custom_type_script = "uid://c13d1l2ij0mkb"
 
 [node name="Stamina" type="Node" parent="." unique_id=199306194]
 script = ExtResource("8_ajy2y")
-stamina = 100
+actual_stamina = 100.0
+regen_rate = 10.0
 metadata/_custom_type_script = "uid://c8cg80vmv3go2"
 
 [node name="Almas" type="Node" parent="." unique_id=2076724995]
@@ -118,3 +121,10 @@ metadata/_custom_type_script = "uid://dso3jlrsyo3c2"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1680384423]
 libraries/ = SubResource("AnimationLibrary_ajy2y")
+
+[node name="HabilitySurf" type="Node" parent="." unique_id=166534084]
+unique_name_in_owner = true
+script = ExtResource("1_4td50")
+velocity_multiplier = 2.0
+cost = 20.0
+metadata/_custom_type_script = "uid://cef4hhvtdpx3a"

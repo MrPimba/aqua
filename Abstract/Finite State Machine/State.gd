@@ -19,10 +19,10 @@ func physics_update(_delta: float) -> void:
 # Chamada pela maquina de estados quando o estado é inicializado
 # pela primeira vez
 func enter(previous_state_path: String, data := {}) -> void:
-	printerr("Entrando no estado:" + str(get_path()))
+	print("Entrando no estado:" + str(get_path()))
 	pass
 	
 # Chamada pela maquina de estados antes do estado ser trocado
 func exit() -> void:
-	printerr("Saindo do estado:" + str(get_path()))
+	print("Saindo do estado:" + str(get_path()))
 	pass
