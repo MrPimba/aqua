@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://c8ufbt2n340sr"
 script = ExtResource("4_c51ww")
 metadata/_custom_type_script = "uid://d2at0ak7tkxea"
 
-[node name="Surf" type="Node" parent="StateMachine" unique_id=971636387]
+[node name="Surf" type="Node" parent="StateMachine" unique_id=779342086]
 script = ExtResource("6_ajy2y")
 metadata/_custom_type_script = "uid://ca7yp78tefryh"
 
@@ -126,5 +126,5 @@ libraries/ = SubResource("AnimationLibrary_ajy2y")
 unique_name_in_owner = true
 script = ExtResource("1_4td50")
 velocity_multiplier = 2.0
-cost = 20.0
+cost = 30.0
 metadata/_custom_type_script = "uid://cef4hhvtdpx3a"

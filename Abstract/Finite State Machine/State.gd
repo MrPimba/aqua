@@ -1,6 +1,9 @@
 # Classe abstrata de Estado
 class_name State extends Node
 
+var hability: Hability = NullHability.new()
+var character: Character
+
 # Ativada quando o estado é finalizado
 signal finished(next_state_path: String, data: Dictionary);
 
@@ -14,7 +17,7 @@ func update(_delta: float) -> void:
 	
 # Chamada pela maquina de estados no tick de física
 func physics_update(_delta: float) -> void:
-	pass
+	hability.execute(character, _delta)
 
 # Chamada pela maquina de estados quando o estado é inicializado
 # pela primeira vez
